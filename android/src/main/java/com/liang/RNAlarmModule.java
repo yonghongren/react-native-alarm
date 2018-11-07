@@ -33,6 +33,7 @@ public class RNAlarmModule extends ReactContextBaseJavaModule {
 
     private final ReactApplicationContext reactContext;
     private SharedPreferences sharedPreferences;
+    protected final String LOGTAG = "ReactNative RNAlarm";
 
     public RNAlarmModule(ReactApplicationContext reactContext) {
         super(reactContext);
@@ -131,11 +132,11 @@ public class RNAlarmModule extends ReactContextBaseJavaModule {
             long triggerTimeMillis = Long.parseLong(triggerTime);
             Calendar originalTimeCal = Calendar.getInstance();
             originalTimeCal.setTimeInMillis(triggerTimeMillis);
-            Log.w("originalTimeCal",formatter.format(originalTimeCal.getTime()));
+            Log.w(LOGTAG,formatter.format(originalTimeCal.getTime()));
 
             Calendar currentTimeCal = Calendar.getInstance();
             currentTimeCal.setTime(new Date());
-            Log.w("currentTimeCal",formatter.format(currentTimeCal.getTime()));
+            Log.w(LOGTAG, formatter.format(currentTimeCal.getTime()));
 
             //compare alarm and currentTime
             if (triggerTimeMillis - currentTimeCal.getTimeInMillis() > 0)

@@ -16,6 +16,7 @@ import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.view.WindowManager;
 import android.widget.Toast;
+import android.util.Log;
 
 import com.facebook.common.util.UriUtil;
 
@@ -35,6 +36,8 @@ public class RNALarmCeiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+
+	Log.i("ReactNative Alarm", "received notification");
 
         if(intent.getExtras().getBoolean("stopNotification")) {
             if (player.isPlaying()) {
@@ -151,6 +154,7 @@ public class RNALarmCeiver extends BroadcastReceiver {
     }
 
     private PendingIntent createOnDismissedIntent(Context context) {
+	Log.i("ReactNative", "createOnDismissedIntent");
         Intent intent = new Intent(RNAlarmConstants.REACT_NATIVE_ALARM);
         intent.putExtra("stopNotification", true);
         PendingIntent pendingIntent =
